@@ -1,0 +1,23 @@
+#!/bin/bash
+#Script de ejemplo para arranque de servicios en /etc/rc.d/init.d
+chkconfig: 5 93 04 
+
+case "$1" in
+ start)
+   echo "Iniciando servicio..."
+   # Aqui comandos a ejecutar para arrancar el servicio
+   
+  /root/numeros &
+   ;;
+ stop)
+   echo "Deteniendo servicio..."
+   # Aqui comandos a ejecutar para para el servicio
+   
+   kill -9 $(pidof /root/numeros)
+   ;;
+ *)
+   echo "Modo de empleo: /etc/rc.d/init.d/mi_script {start|stop}"
+   exit 1
+   ;;
+esac
+exit 0

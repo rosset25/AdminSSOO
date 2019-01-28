@@ -1,0 +1,13 @@
+[Unit]
+Description=The Apache HTTP Server (prefork MPM)
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/httpd/httpd.pid
+ExecStart=/etc/rc.d/init.d start
+ExecReload=/usr/sbin/httpd $OPTIONS -t
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStop=/etc/rc.d/init stop
+[Install]
+WantedBy=graphical-user.target
